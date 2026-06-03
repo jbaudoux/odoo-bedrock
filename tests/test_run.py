@@ -79,6 +79,9 @@ def test_env_vars():
         env_vars.append(
             ("WITH_DEMO", "False"),
         )
+        env_vars.append(
+            ("IMPORT_FILE_MAXBYTES", 10 * 1024 * 1024),
+        )
     if parsed_odoo_version() < (10, 0):
         env_vars.append(("ODOO_BIN", "openerp-server"))
     else:
@@ -188,6 +191,7 @@ def test_odoo_cfg_env_vars():
         env_vars.add("WITHOUT_DEMO")
     else:
         env_vars.add("WITH_DEMO")
+        env_vars.add("IMPORT_FILE_MAXBYTES")
     env = {}
     for env_var in env_vars:
         env[env_var] = f"*{env_var}*"
